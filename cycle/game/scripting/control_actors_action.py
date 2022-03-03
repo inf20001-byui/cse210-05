@@ -21,6 +21,7 @@ class ControlActorsAction(Action):
         """
         self._keyboard_service = keyboard_service
         self._direction = Point(constants.CELL_SIZE, 0)
+        self._direction2 = Point(constants.CELL_SIZE, 0)
 
     def execute(self, cast, script):
         """Executes the control actors action.
@@ -29,21 +30,40 @@ class ControlActorsAction(Action):
             cast (Cast): The cast of Actors in the game.
             script (Script): The script of Actions in the game.
         """
-        # left
+        # P1 left
         if self._keyboard_service.is_key_down('a'):
             self._direction = Point(-constants.CELL_SIZE, 0)
         
-        # right
+        # P1 right
         if self._keyboard_service.is_key_down('d'):
             self._direction = Point(constants.CELL_SIZE, 0)
         
-        # up
+        # P1 up
         if self._keyboard_service.is_key_down('w'):
             self._direction = Point(0, -constants.CELL_SIZE)
         
-        # down
+        # P1 down
         if self._keyboard_service.is_key_down('s'):
             self._direction = Point(0, constants.CELL_SIZE)
         
+        # P2 left
+        if self._keyboard_service.is_key_down('j'):
+            self._direction2 = Point(-constants.CELL_SIZE, 0)
+        
+        # P2 right
+        if self._keyboard_service.is_key_down('l'):
+            self._direction2 = Point(constants.CELL_SIZE, 0)
+        
+        # P2 up
+        if self._keyboard_service.is_key_down('i'):
+            self._direction2 = Point(0, -constants.CELL_SIZE)
+        
+        # P2 down
+        if self._keyboard_service.is_key_down('k'):
+            self._direction2 = Point(0, constants.CELL_SIZE)
+
         cycle = cast.get_first_actor("cycles")
         cycle.turn_head(self._direction)
+        
+        cycle2 = cast.get_first_actor("cycles2")
+        cycle2.turn_head(self._direction2)

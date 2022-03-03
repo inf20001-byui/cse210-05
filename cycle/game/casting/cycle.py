@@ -1,4 +1,5 @@
 import constants
+import random
 from game.casting.actor import Actor
 from game.shared.point import Point
 
@@ -30,7 +31,7 @@ class Cycle(Actor):
             previous = self._segments[i - 1]
             velocity = previous.get_velocity()
             trailing.set_velocity(velocity)
-
+    
     def get_head(self):
         return self._segments[0]
 
@@ -52,12 +53,14 @@ class Cycle(Actor):
         self._segments[0].set_velocity(velocity)
     
     def _prepare_body(self):
-        x = 15 #x = int(constants.MAX_X / 4)
-        y = 15 #y = int(constants.MAX_Y / 4)
+        #x = 15 
+        x = random.randint(1,300)
+        #y = 15 
+        y = random.randint(1,900)
 
         for i in range(constants.CYCLE_LENGTH):
             position = Point(x - i * constants.CELL_SIZE, y)
-            velocity = Point(1 * constants.CELL_SIZE, 0)
+            velocity = Point(0, 0)
             text = "+" if i == 0 else "O"
             color = constants.YELLOW if i == 0 else constants.GREEN
             
