@@ -25,11 +25,11 @@ class Cycle2(Actor):
 
     def move_next(self):
         # move all segments
-        for segment in self._segments2:
+        for segment in self._segments:
             segment.move_next()
     
     def get_head(self):
-        return self._segments2[0]
+        return self._segments[0]
 
     def grow_tail(self, number_of_segments):
         head = self._segments[0]
@@ -45,7 +45,7 @@ class Cycle2(Actor):
         self._segments.append(segment)
 
     def turn_head(self, velocity):
-        self._segments2[0].set_velocity(velocity)
+        self._segments[0].set_velocity(velocity)
         
     def _prepare_body(self):
         x = int((constants.MAX_X * 3) / 4)
