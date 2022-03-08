@@ -51,25 +51,6 @@ class HandleCollisionsAction(Action):
         #     score.add_points(points)
         #     food.reset()
                   
-    def _handle_segment_addition(self, cast):
-        """Updates the score nd moves the food if the snake collides with the food.
-        
-        Args:
-            cast (Cast): The cast of Actors in the game.
-        """
-        # score = cast.get_first_actor("scores")
-        # food = cast.get_first_actor("foods")
-        cycle = cast.get_first_actor("cycle")
-        cycle.grow_tail()
-        cycle2 = cast.get_first_actor("cycle2")
-        cycle2.grow_tail()
-        # head = snake.get_head()
-
-        # if head.get_position().equals(food.get_position()):
-        #     points = food.get_points()
-        #     snake.grow_tail(points)
-        #     score.add_points(points)
-        #     food.reset()
         
     def _handle_segment_collision(self, cast):
         """Sets the game over flag if the snake collides with one of its segments.
