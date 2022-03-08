@@ -27,48 +27,39 @@ class Cycle2(Actor):
         # move all segments
         for segment in self._segments2:
             segment.move_next()
-        # update velocities
-        for i in range(len(self._segments2) - 1, 0, -1):
-            trailing = self._segments2[i]
-            previous = self._segments2[i - 1]
-            velocity = previous.get_velocity()
-            trailing.set_velocity(velocity)
     
     def get_head(self):
         return self._segments2[0]
 
     def grow_tail(self, number_of_segments):
-        for i in range(number_of_segments):
-            tail = self._segments2[-1]
-            velocity = tail.get_velocity()
-            offset = velocity.reverse()
-            position = tail.get_position().add(offset)
-            
-            segment2 = Actor()
-            segment2.set_position(position)
-            segment2.set_velocity(velocity)
-            segment2.set_text("O")
-            segment2.set_color(constants.RED)
-            self._segments2.append(segment2)
+        head = self._segments[0]
+        velocity = head.get_velocity()
+        offset = velocity.reverse()
+        position = head.get_position().add(offset)
+        
+        segment = Actor()
+        segment.set_position(position)
+        segment.set_velocity(Point(0,0))
+        segment.set_text("#")
+        segment.set_color(constants.RED)
+        self._segments.append(segment)
 
     def turn_head(self, velocity):
         self._segments2[0].set_velocity(velocity)
         
     def _prepare_body(self):
-        #x = 15 
-        x = random.randint(451, 900)
-        #y = 15 
-        y = random.randint(301, 600)
+        x = int((constants.MAX_X * 3) / 4)
+        y = int(constants.MAX_Y / 2)
 
-        for i in range(constants.CYCLE_LENGTH):
+        for i in range(constants.SNAKE_LENGTH):
             position = Point(x - i * constants.CELL_SIZE, y)
-            velocity = Point(0, 0)
-            text = "+" if i == 0 else "O"
+            velocity = Point(1 * constants.CELL_SIZE, 0) if i == 0 else Point(0,0)
+            text = "8" if i == 0 else "#"
             color = constants.YELLOW if i == 0 else constants.RED
             
-            segment2 = Actor()
-            segment2.set_position(position)
-            segment2.set_velocity(velocity)
-            segment2.set_text(text)
-            segment2.set_color(color)
-            self._segments2.append(segment2)
+            segment = Actor()
+            segment.set_position(position)
+            segment.set_velocity(velocity)
+            segment.set_text(text)
+            segment.set_color(color)
+            self._segments.append(segment)
