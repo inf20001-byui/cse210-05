@@ -20,7 +20,7 @@ def main():
     
     # create the cast
     cast = Cast()
-    cast.add_actor("cycles", Cycle())
+    cast.add_actor("cycle", Cycle())
     cast.add_actor("cycles2", Cycle2())
     cast.add_actor("scores", Score())
    
