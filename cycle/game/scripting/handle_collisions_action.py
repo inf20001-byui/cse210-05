@@ -59,9 +59,9 @@ class HandleCollisionsAction(Action):
         """
         # score = cast.get_first_actor("scores")
         # food = cast.get_first_actor("foods")
-        cycle = cast.get_first_actor("snake")
+        cycle = cast.get_first_actor("cycle")
         cycle.grow_tail()
-        cycle2 = cast.get_first_actor("snake2")
+        cycle2 = cast.get_first_actor("cycle2")
         cycle2.grow_tail()
         # head = snake.get_head()
 
