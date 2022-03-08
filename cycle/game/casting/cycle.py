@@ -28,7 +28,7 @@ class Cycle(Actor):
     def get_head(self):
         return self._segments[0]
 
-    def grow_tail(self, number_of_segments):
+    def grow_tail(self):
         head = self._segments[0]
         velocity = head.get_velocity()
         offset = velocity.reverse()
