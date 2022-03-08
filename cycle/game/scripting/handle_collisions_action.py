@@ -72,7 +72,6 @@ class HandleCollisionsAction(Action):
             segments = cycle.get_segments()
             segments2 = cycle2.get_segments()
 
-
             x = int(constants.MAX_X / 2)
             y = int(constants.MAX_Y / 2)
             position = Point(x, y)
