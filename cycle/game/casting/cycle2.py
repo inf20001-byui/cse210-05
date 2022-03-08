@@ -17,11 +17,11 @@ class Cycle2(Actor):
     """
     def __init__(self):
         super().__init__()
-        self._segments2 = []
+        self._segments = []
         self._prepare_body()
 
     def get_segments(self):
-        return self._segments2
+        return self._segments
 
     def move_next(self):
         # move all segments
