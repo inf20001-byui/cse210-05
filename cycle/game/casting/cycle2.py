@@ -8,12 +8,9 @@ from game.shared.point import Point
 
 class Cycle2(Actor):
     """
-    A tasty item that snakes like to eat.
+    A futuristic cycle that rides on a beam of light and creates a trail behind it that can not be crossed.
     
-    The responsibility of Food is to select a random position and points that it's worth.
-
-    Attributes:
-        _points (int): The number of points the food is worth.
+    The responsibility of Cycle is to move itself.
     """
     def __init__(self):
         super().__init__()

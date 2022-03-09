@@ -8,7 +8,7 @@ class HandleCollisionsAction(Action):
     An update action that handles interactions between the actors.
     
     The responsibility of HandleCollisionsAction is to handle the situation when the cycle collides
-    with another cycle, or the cycle collides with its segments, or the game is over.
+    with another cycle, or the cycle collides with its trails, or the game is over.
 
     Attributes:
         _is_game_over (boolean): Whether or not the game is over.
@@ -32,7 +32,7 @@ class HandleCollisionsAction(Action):
             self._handle_game_over(cast)
     
     def _handle_segment_addition(self, cast):
-        """Updates the score nd moves the food if the snake collides with the food.
+        """Updates the score and if a player ollides with a light trail.
         
         Args:
             cast (Cast): The cast of Actors in the game.
@@ -45,7 +45,7 @@ class HandleCollisionsAction(Action):
                   
         
     def _handle_segment_collision(self, cast):
-        """Sets the game over flag if the snake collides with one of its segments.
+        """Sets the game over flag if the cycle collides with one of its or another players trail.
         
         Args:
             cast (Cast): The cast of Actors in the game.
