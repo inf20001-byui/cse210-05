@@ -1,4 +1,3 @@
-#from itertools import cycle
 import constants
 from game.casting.actor import Actor
 from game.scripting.action import Action
@@ -26,6 +25,7 @@ class HandleCollisionsAction(Action):
             cast (Cast): The cast of Actors in the game.
             script (Script): The script of Actions in the game.
         """
+
         if not self._is_game_over:
             self._handle_segment_addition(cast)
             self._handle_segment_collision(cast)
@@ -37,8 +37,6 @@ class HandleCollisionsAction(Action):
         Args:
             cast (Cast): The cast of Actors in the game.
         """
-        # score = cast.get_first_actor("scores")
-        # food = cast.get_first_actor("foods")
         cycle = cast.get_first_actor("cycle")
         cycle.grow_tail()
         cycle2 = cast.get_first_actor("cycle2")
@@ -98,7 +96,7 @@ class HandleCollisionsAction(Action):
             position = Point(x, y)
 
             message = Actor()
-            message.set_text(f"Game Over!\n\nHit 'T' to play again.")
+            message.set_text(f"Game Over!")
             message.set_position(position)
             message.set_color(constants.ORANGE)
             cast.add_actor("messages", message)

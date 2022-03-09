@@ -20,25 +20,24 @@ from game.shared.point import Point
 def main():
     
     # create the cast
-    cast = Cast()
-    cast.add_actor("cycle", Cycle())
-    cast.add_actor("cycle2", Cycle2())
-    cast.add_actor("score", Score())
-    cast.add_actor("score2", Score2())
-   
-    # start the game
-    keyboard_service = KeyboardService()
-    video_service = VideoService()
+        cast = Cast()
+        cast.add_actor("score", Score())
+        cast.add_actor("score2", Score2())
+        cast.add_actor("cycle", Cycle())
+        cast.add_actor("cycle2", Cycle2())
 
-    script = Script()
-    script.add_action("input", ControlActorsAction(keyboard_service))
-    script.add_action("update", MoveActorsAction())
-    script.add_action("update", HandleCollisionsAction())
-    script.add_action("output", DrawActorsAction(video_service))
-    
-    director = Director(video_service)
-    director.start_game(cast, script)
+        # start the game
+        keyboard_service = KeyboardService()
+        video_service = VideoService()
 
+        script = Script()
+        script.add_action("input", ControlActorsAction(keyboard_service))
+        script.add_action("update", MoveActorsAction())
+        script.add_action("update", HandleCollisionsAction())
+        script.add_action("output", DrawActorsAction(video_service))
+        
+        director = Director(video_service)
+        director.start_game(cast, script)
 
 if __name__ == "__main__":
     main()
