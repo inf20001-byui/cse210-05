@@ -5,7 +5,7 @@ from game.shared.point import Point
 
 class Cycle(Actor):
     """
-    A long limbless reptile.
+    A futuristic cycle that rides on a beam of light and creates a trail behind it that can not be crossed.
     
     The responsibility of Cycle is to move itself.
 
