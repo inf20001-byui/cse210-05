@@ -43,13 +43,7 @@ class HandleCollisionsAction(Action):
         cycle.grow_tail()
         cycle2 = cast.get_first_actor("cycle2")
         cycle2.grow_tail()
-        # head = snake.get_head()
 
-        # if head.get_position().equals(food.get_position()):
-        #     points = food.get_points()
-        #     snake.grow_tail(points)
-        #     score.add_points(points)
-        #     food.reset()
                   
         
     def _handle_segment_collision(self, cast):
@@ -58,6 +52,9 @@ class HandleCollisionsAction(Action):
         Args:
             cast (Cast): The cast of Actors in the game.
         """
+        score = cast.get_first_actor("score")
+        score2 = cast.get_first_actor("score2")
+
         cycle = cast.get_first_actor("cycle")
         head = cycle.get_segments()[0]
         segments = cycle.get_segments()[1:]
@@ -65,15 +62,19 @@ class HandleCollisionsAction(Action):
         cycle2 = cast.get_first_actor("cycle2")
         head2 = cycle2.get_segments()[0]
         segments2 = cycle2.get_segments()[1:]
+
+        if head.get_position().equals(head2.get_position()):
+            self._is_game_over = True
         
         for segment in segments:
             if head.get_position().equals(segment.get_position()) or head2.get_position().equals(segment.get_position()):
                 self._is_game_over = True
+                score.add_points(1)
         
         for segment2 in segments2:
             if head.get_position().equals(segment2.get_position()) or head2.get_position().equals(segment2.get_position()):
                 self._is_game_over = True
-        
+                score2.add_points(1)
         
     def _handle_game_over(self, cast):
         """Shows the 'game over' message and turns the cycles to white if the game is over.
@@ -84,8 +85,13 @@ class HandleCollisionsAction(Action):
         if self._is_game_over:
             cycle = cast.get_first_actor("cycle")
             segments = cycle.get_segments()
+            score = cast.get_first_actor("score")
             cycle2 = cast.get_first_actor("cycle2")
             segments2 = cycle2.get_segments()
+            score2 = cast.get_first_actor("score2")
+
+            score.set_text(f"Score: {score._points}")
+            score2.set_text(f"Score: {score2._points}")
 
             x = int(constants.MAX_X / 2)
             y = int(constants.MAX_Y / 2)
