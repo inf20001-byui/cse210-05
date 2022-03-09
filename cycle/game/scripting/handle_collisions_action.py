@@ -90,19 +90,22 @@ class HandleCollisionsAction(Action):
             segments2 = cycle2.get_segments()
             score2 = cast.get_first_actor("score2")
 
-            score.set_text(f"Score: {score._points}")
-            score2.set_text(f"Score: {score2._points}")
+            score.set_text(f"Player One: {score._points}")
+            score2.set_text(f"Player Two: {score2._points}")
 
             x = int(constants.MAX_X / 2)
             y = int(constants.MAX_Y / 2)
             position = Point(x, y)
 
             message = Actor()
-            message.set_text("Game Over!")
+            message.set_text(f"Game Over!\n\nHit 'T' to play again.")
             message.set_position(position)
+            message.set_color(constants.ORANGE)
             cast.add_actor("messages", message)
 
-            for segment in segments:
-                segment.set_color(constants.WHITE)
-            for segment2 in segments2:
-                segment2.set_color(constants.WHITE)
+            segments[0].set_color(constants.WHITE)
+            # for segment in segments:
+            #     segment.set_color(constants.WHITE)
+            segments2[0].set_color(constants.WHITE)
+            # for segment2 in segments2:
+            #     segment2.set_color(constants.WHITE)

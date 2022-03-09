@@ -20,8 +20,8 @@ class ControlActorsAction(Action):
             keyboard_service (KeyboardService): An instance of KeyboardService.
         """
         self._keyboard_service = keyboard_service
-        self._direction = Point(constants.CELL_SIZE, 0)
-        self._direction2 = Point(constants.CELL_SIZE, 0)
+        self._direction = Point(0, -constants.CELL_SIZE)
+        self._direction2 = Point(0, -constants.CELL_SIZE)
 
     def execute(self, cast, script):
         """Executes the control actors action.
@@ -62,8 +62,14 @@ class ControlActorsAction(Action):
         if self._keyboard_service.is_key_down('k'):
             self._direction2 = Point(0, constants.CELL_SIZE)
 
+        # Game Over Space bar pressed to Play Again
+        if self._keyboard_service.is_key_down('t'):
+            self._play_again = True
+
         cycle = cast.get_first_actor("cycle")
         cycle.turn_head(self._direction)
         
         cycle2 = cast.get_first_actor("cycle2")
         cycle2.turn_head(self._direction2)
+
+
