@@ -50,6 +50,8 @@ class HandleCollisionsAction(Action):
         Args:
             cast (Cast): The cast of Actors in the game.
         """
+        cycleCollision = False
+        cycleCollision2 = False
         score = cast.get_first_actor("score")
         score2 = cast.get_first_actor("score2")
 
@@ -63,16 +65,31 @@ class HandleCollisionsAction(Action):
 
         if lightCycle.get_position().equals(lightCycle2.get_position()):
             self._is_game_over = True
+            cycleCollision = True
+            cycleCollision2 = True
         
         for segment in segments:
-            if lightCycle.get_position().equals(segment.get_position()) or lightCycle2.get_position().equals(segment.get_position()):
+            if lightCycle.get_position().equals(segment.get_position()):
                 self._is_game_over = True
-                score2.add_points(1)
+                cycleCollision = True
+            elif lightCycle2.get_position().equals(segment.get_position()):
+                self._is_game_over = True
+                cycleCollision2 = True
         
         for segment2 in segments2:
-            if lightCycle.get_position().equals(segment2.get_position()) or lightCycle2.get_position().equals(segment2.get_position()):
+            if lightCycle.get_position().equals(segment2.get_position()):
                 self._is_game_over = True
-                score.add_points(1)
+                cycleCollision = True
+            elif lightCycle2.get_position().equals(segment2.get_position()):
+                self._is_game_over = True
+                cycleCollision2 = True
+        
+        if cycleCollision == True and cycleCollision2 == False:
+            score2.add_points(1)
+        elif cycleCollision2 == True and cycleCollision == False:
+            score.add_points(1)
+
+
         
     def _handle_game_over(self, cast):
         """Shows the 'game over' message and turns the cycles to white if the game is over.
@@ -88,8 +105,21 @@ class HandleCollisionsAction(Action):
             segments2 = cycle2.get_segments()
             score2 = cast.get_first_actor("score2")
 
-            score.set_text(f"Player One: {score._points}")
-            score2.set_text(f"Player Two: {score2._points}")
+            if score._points == score2._points:
+                score.set_color(constants.ORANGE)
+                score2.set_color(constants.ORANGE)
+                score.set_text(f"Player One: Loser")
+                score2.set_text(f"Player One: Loser")
+            elif score._points != 0:
+                score.set_color(constants.ORANGE)
+                score2.set_color(constants.ORANGE)
+                score.set_text(f"Player One: Winner")
+                score2.set_text(f"Player One: Loser")
+            elif score2._points != 0:
+                score.set_color(constants.ORANGE)
+                score2.set_color(constants.ORANGE)
+                score.set_text(f"Player One: Loser")
+                score2.set_text(f"Player One: Winner")
 
             x = int(constants.MAX_X / 2)
             y = int(constants.MAX_Y / 2)
