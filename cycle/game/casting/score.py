@@ -1,3 +1,4 @@
+import constants
 from game.casting.actor import Actor
 from game.shared.point import Point
 
@@ -25,5 +26,11 @@ class Score(Actor):
         Args:
             points (int): The points to add.
         """
-        self._points += points
-        self.set_text(f"Player One: {self._points}")
+        if points == 0:
+            self._points += points
+            self.set_text(f"Player One: {self._points}")
+            
+        if points != 0:
+            self._points = "Winner"
+            self.set_color(constants.ORANGE)
+            self.set_text(f"Player One: {self._points}")

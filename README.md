@@ -1,5 +1,8 @@
 # Cycle
 Cycle is a game where the players try to cut each other off using cycles that leave a trail behind them.
+You lose if you crash into either your own trail or the trail of the other player.  You will see a "Game Over" prompt in the middle of the screen.
+The light cycles will also turn white and while you will still be able to steer, you won't hit anything.
+
 This is similar to the light cycles in TRON.
 
 ## Getting Started
@@ -32,7 +35,7 @@ root                    (project root folder)
 * Raylib Python CFFI 3.7
 
 ## Authors
+* Adam Dutson quibly@byui.edu
 * Christopher Infante inf20001@byui.edu
 * Nahyra Viana nahyraviana@gmail.com
 * TJ Miller mil14029@byui.edu
-* Adam Dutson quibly@byui.edu

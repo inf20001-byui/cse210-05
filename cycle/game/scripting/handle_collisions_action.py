@@ -32,15 +32,15 @@ class HandleCollisionsAction(Action):
             self._handle_game_over(cast)
     
     def _handle_segment_addition(self, cast):
-        """Updates the score and if a player ollides with a light trail.
+        """Updates the score and if a player collides with a light trail.
         
         Args:
             cast (Cast): The cast of Actors in the game.
         """
         cycle = cast.get_first_actor("cycle")
-        cycle.grow_tail()
+        cycle.grow_trail()
         cycle2 = cast.get_first_actor("cycle2")
-        cycle2.grow_tail()
+        cycle2.grow_trail()
 
                   
         
@@ -54,25 +54,25 @@ class HandleCollisionsAction(Action):
         score2 = cast.get_first_actor("score2")
 
         cycle = cast.get_first_actor("cycle")
-        head = cycle.get_segments()[0]
+        lightCycle = cycle.get_segments()[0]
         segments = cycle.get_segments()[1:]
 
         cycle2 = cast.get_first_actor("cycle2")
-        head2 = cycle2.get_segments()[0]
+        lightCycle2 = cycle2.get_segments()[0]
         segments2 = cycle2.get_segments()[1:]
 
-        if head.get_position().equals(head2.get_position()):
+        if lightCycle.get_position().equals(lightCycle2.get_position()):
             self._is_game_over = True
         
         for segment in segments:
-            if head.get_position().equals(segment.get_position()) or head2.get_position().equals(segment.get_position()):
-                self._is_game_over = True
-                score.add_points(1)
-        
-        for segment2 in segments2:
-            if head.get_position().equals(segment2.get_position()) or head2.get_position().equals(segment2.get_position()):
+            if lightCycle.get_position().equals(segment.get_position()) or lightCycle2.get_position().equals(segment.get_position()):
                 self._is_game_over = True
                 score2.add_points(1)
+        
+        for segment2 in segments2:
+            if lightCycle.get_position().equals(segment2.get_position()) or lightCycle2.get_position().equals(segment2.get_position()):
+                self._is_game_over = True
+                score.add_points(1)
         
     def _handle_game_over(self, cast):
         """Shows the 'game over' message and turns the cycles to white if the game is over.

@@ -1,3 +1,5 @@
+from itertools import cycle
+import constants
 from game.casting.actor import Actor
 from game.shared.point import Point
 
@@ -17,7 +19,7 @@ class Score2(Actor):
         super().__init__()
         self._points = 0
         self.add_points(0)
-        self._position = (Point(785,0))
+        self._position = (Point(755,0))
 
     def add_points(self, points):
         """Adds the given points to the score's total points.
@@ -25,5 +27,11 @@ class Score2(Actor):
         Args:
             points (int): The points to add.
         """
-        self._points += points
-        self.set_text(f"Player Two: {self._points}")
+        if points == 0:
+            self._points += points
+            self.set_text(f"Player Two: {self._points}")
+       
+        if points != 0:
+            self._points = "Winner"
+            self.set_color(constants.ORANGE)
+            self.set_text(f"Player Two: {self._points}")

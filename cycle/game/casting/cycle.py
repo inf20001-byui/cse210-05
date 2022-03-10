@@ -25,14 +25,14 @@ class Cycle(Actor):
         for segment in self._segments:
             segment.move_next()
     
-    def get_head(self):
+    def get_lightCycle(self):
         return self._segments[0]
 
-    def grow_tail(self):
-        head = self._segments[0]
-        velocity = head.get_velocity()
+    def grow_trail(self):
+        lightCycle = self._segments[0]
+        velocity = lightCycle.get_velocity()
         offset = velocity.reverse()
-        position = head.get_position().add(offset)
+        position = lightCycle.get_position().add(offset)
         
         segment = Actor()
         segment.set_position(position)
@@ -41,7 +41,7 @@ class Cycle(Actor):
         segment.set_color(constants.GREEN)
         self._segments.append(segment)
 
-    def turn_head(self, velocity):
+    def turn_lightCycle(self, velocity):
         self._segments[0].set_velocity(velocity)
     
     def _prepare_body(self):
