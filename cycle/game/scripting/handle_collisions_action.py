@@ -109,17 +109,17 @@ class HandleCollisionsAction(Action):
                 score.set_color(constants.ORANGE)
                 score2.set_color(constants.ORANGE)
                 score.set_text(f"Player One: Loser")
-                score2.set_text(f"Player One: Loser")
+                score2.set_text(f"Player Two: Loser")
             elif score._points != 0:
                 score.set_color(constants.ORANGE)
                 score2.set_color(constants.ORANGE)
                 score.set_text(f"Player One: Winner")
-                score2.set_text(f"Player One: Loser")
+                score2.set_text(f"Player Two: Loser")
             elif score2._points != 0:
                 score.set_color(constants.ORANGE)
                 score2.set_color(constants.ORANGE)
                 score.set_text(f"Player One: Loser")
-                score2.set_text(f"Player One: Winner")
+                score2.set_text(f"Player Two: Winner")
 
             x = int(constants.MAX_X / 2)
             y = int(constants.MAX_Y / 2)
@@ -131,9 +131,9 @@ class HandleCollisionsAction(Action):
             message.set_color(constants.ORANGE)
             cast.add_actor("messages", message)
 
-            segments[0].set_color(constants.WHITE)
+            # segments[0].set_color(constants.WHITE)
             # for segment in segments:
             #     segment.set_color(constants.WHITE)
-            segments2[0].set_color(constants.WHITE)
+            # segments2[0].set_color(constants.WHITE)
             # for segment2 in segments2:
             #     segment2.set_color(constants.WHITE)
